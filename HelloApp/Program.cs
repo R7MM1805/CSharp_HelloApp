@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.DataTypes();
+﻿HelloApp._01_Bases.Program.NumericTypes();
