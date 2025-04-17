@@ -1,1 +1,1 @@
-﻿Console.WriteLine("Hello, World!");
+﻿HelloApp._01_Bases.Program.Variables();
