@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.Variables();
+﻿HelloApp._01_Bases.Program.DataTypes();
