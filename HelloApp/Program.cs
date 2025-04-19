@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.StringTypes();
+﻿HelloApp._01_Bases.Program.SalesReport();
