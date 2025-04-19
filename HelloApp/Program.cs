@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.SalesReport();
+﻿HelloApp._01_Bases.Program.SalaryCalculator();
