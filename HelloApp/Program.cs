@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.DateTimeTypes();
+﻿HelloApp._01_Bases.Program.DayOfLife();
