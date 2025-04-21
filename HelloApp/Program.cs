@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.DayOfLife();
+﻿HelloApp._01_Bases.Program.DaysUntilNextBirthday();
