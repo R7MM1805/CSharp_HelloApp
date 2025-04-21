@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.SalaryCalculator();
+﻿HelloApp._01_Bases.Program.DateTimeTypes();
