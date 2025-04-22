@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.DaysUntilNextBirthday();
+﻿HelloApp._01_Bases.Program.TypeDifference();
