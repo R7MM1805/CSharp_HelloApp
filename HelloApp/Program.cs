@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.HandleNullables();
+﻿HelloApp._01_Bases.Program.Operators();
