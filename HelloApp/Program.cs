@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.Arrays();
+﻿HelloApp._01_Bases.Program.InventoryManager();
