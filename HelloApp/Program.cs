@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.Operators();
+﻿HelloApp._01_Bases.Program.Arrays();
