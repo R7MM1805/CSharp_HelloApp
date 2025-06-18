@@ -1,4 +1,6 @@
-﻿namespace HelloApp._01_Bases
+﻿using System.Diagnostics;
+
+namespace HelloApp._01_Bases
 {
     partial class Program
     {
@@ -12,7 +14,17 @@
             string[] products = ["Laptop", "Mouse", "Teclado", "Monitor", "Impresora"];
             int[] stock = [10, 25, 15, 8, 5];
             decimal[] prices = [750.50m, 20.50m, 45.00m, 200.99m, 150.00m];
-            string responseValidate = InitialInventory();
+            InitialInventory(products, stock, prices);
+        }
+
+        private static void InitialInventory(string[] products, int[] stock, decimal[] prices)
+        {
+            string responseValidate;
+            do
+            {
+                responseValidate = ValidateOption(ShowOptions());
+            }
+            while (responseValidate == "Error");
             if (responseValidate == "1")
             {
                 ShowOptionOne(products, stock, prices);
@@ -21,17 +33,6 @@
             {
                 Console.WriteLine("Gracias por su visita");
             }
-        }
-
-        private static string InitialInventory()
-        {
-            string responseValidate;
-            do
-            {
-                responseValidate = ValidateOption(ShowOptions());
-            }
-            while (responseValidate == "Error");
-            return responseValidate;
         }
         private static string? ShowOptions()
         {
@@ -98,6 +99,7 @@
             Console.WriteLine($"Compra exitosa. Total a pagar: {decimal.Round(prices[productIndex] * quantity, 2):C}");
             stock[productIndex] = stock[productIndex] - quantity;
             Console.WriteLine($"Stock restante para el producto {products[productIndex]} es: {stock[productIndex]}");
+            InitialInventory(products, stock, prices);
         }
     }
 }
