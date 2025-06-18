@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace HelloApp._01_Bases
+﻿namespace HelloApp._01_Bases
 {
     partial class Program
     {
