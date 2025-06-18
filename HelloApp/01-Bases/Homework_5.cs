@@ -3,56 +3,101 @@
     partial class Program
     {
         /*
-         * El sistema debe manejar 3 listas (Productos - Stock - Precio)
-         * El usuario debe seleccionar el producto que desea comprar
-         * El usuario ingresa la cantidad solicitada
-         * El sistema valida el stock del producto y muestra el precio al usuario
-         * El usuario ingresa el monto a pagar y el sistema valida que sea el monto solicitado.
-         * El sistema debe descontar el stock del producto.
-         * El sistema debe validar todas las interacciones del usuario y mostrar los mensajes correspondientes
+         * Mostrar el inventario actualizado después de cada compra.
+         * Crear un menu con las opciones de 1. Comprar producto y 2. Salir.
          */
 
         public static void InventoryManager()
         {
-            string[] products = ["Monitor", "Mouse", "Teclado"];
-            int[] stock = [10, 25, 30];
-            decimal[] prices = [100.50m, 20.50m, 45.00m];
-            Console.WriteLine("Inventario de productos");
-            Console.WriteLine("------------------------");
-            for (int i = 0; i < products.Length; i++)
+            string[] products = ["Laptop", "Mouse", "Teclado", "Monitor", "Impresora"];
+            int[] stock = [10, 25, 15, 8, 5];
+            decimal[] prices = [750.50m, 20.50m, 45.00m, 200.99m, 150.00m];
+            string responseValidate = InitialInventory();
+            if (responseValidate == "1")
             {
-                Console.WriteLine($"Producto: {products[i]} - Stock: {stock[i]} - Precio: {prices[i]}");
+                ShowOptionOne(products, stock, prices);
             }
+            else if (responseValidate == "2")
+            {
+                Console.WriteLine("Gracias por su visita");
+            }
+        }
+
+        private static string InitialInventory()
+        {
+            string responseValidate;
+            do
+            {
+                responseValidate = ValidateOption(ShowOptions());
+            }
+            while (responseValidate == "Error");
+            return responseValidate;
+        }
+        private static string? ShowOptions()
+        {
+            Console.WriteLine("1. Comprar productos");
+            Console.WriteLine("2. Salir");
+            Console.WriteLine("\nIngrese una opción:");
+            return Console.ReadLine();
+        }
+        private static string ValidateOption(string? selectedOption)
+        {
+            string[] options = ["1", "2"];
+            return options.Contains(selectedOption ?? string.Empty) ? selectedOption! : "Error";
+        }
+        private static void ShowOptionOne(string[] products, int[] stock, decimal[] prices)
+        {
+            ShowProducts(products, stock, prices);
             Console.WriteLine("\nIngrese el producto que desee comprar");
             string? searchedProduct = Console.ReadLine();
             Console.WriteLine("\nIngrese la cantidad que desee comprar");
             string? quantity = Console.ReadLine();
-            string validation = ValidateInputs(products, stock, prices, searchedProduct, quantity);
-            Console.WriteLine(validation);
-        }
-
-        private static string ValidateInputs(string[] products, int[] stock, decimal[] prices, string? product, string? quantity)
-        {
-            if (products is null || products.Length == 0) return "No existen productos en el inventario";
-            if (stock is null || stock.Length == 0) return "No existen stock de productos";
-            if (products.Length != stock.Length) return "La cantidad de productos no coincide con la cantidad de stock";
-            if (string.IsNullOrEmpty(product)) return "Se requiere ingresar el producto a adquirir";
-            if (!products.Any(x => x.Equals(product, StringComparison.OrdinalIgnoreCase))) return $"El producto ingresado '{product}' no se encuentra en el inventario";
-            if (string.IsNullOrEmpty(quantity)) return "Se requiere la cantidad de productos";
-            bool isNumber = int.TryParse(quantity, out int productQuantity);
-            if (!isNumber) return "La cantidad ingresada debe ser un número";
-            if (productQuantity <= 0) return "La cantidad ingresada debe ser mayor o igual a 1";
-            string message = string.Empty;
-            for (int i = 0;i < products.Length; i++)
+            (string responseValidate, int productIndex) = ValidateSale(products, stock, searchedProduct, quantity);
+            if (string.IsNullOrEmpty(responseValidate))
             {
-                if (products[i].Equals(product, StringComparison.OrdinalIgnoreCase))
-                {
-                    message = (productQuantity > stock[i]) ? "La cantidad solicitada sobrepasa el stock del producto" : "";
-                    if (!string.IsNullOrEmpty(message)) break;
-                    message = $"Compra exitosa del producto. Monto total {prices[i] * productQuantity}";
-                }
+                SaleProduct(products, stock, prices, productIndex, int.Parse(quantity!));
             }
-            return message;
+            else
+            {
+                Console.WriteLine(responseValidate);
+                ShowOptionOne(products, stock, prices);
+            }
+        }
+        private static void ShowProducts(string[] products, int[] stock, decimal[] prices)
+        {
+            Console.WriteLine("Inventario de productos");
+            Console.WriteLine("------------------------");
+            for (int i = 0; i < products.Length; i++)
+            {
+                Console.WriteLine($"Producto: {products[i]} - Stock: {stock[i]} - Precio: {prices[i]:C}");
+            }
+        }
+        private static (string, int) ValidateSale(string[] products, int[] stock, string? searchedProduct, string? quantity)
+        {
+            int productIndex = GetProductIndex(products, searchedProduct);
+            if (productIndex == -1) return ("El producto no se encuentra en el inventario", productIndex);
+            string response = ValidateStock(stock, quantity, productIndex);
+            return (response, productIndex);
+        }
+        private static int GetProductIndex(string[] products, string? searchedProduct)
+        {
+            for (int i = 0; i < products.Length; i++)
+            {
+                if (products[i].Equals(searchedProduct, StringComparison.OrdinalIgnoreCase)) return i;
+            }
+            return -1;
+        }
+        private static string ValidateStock(int[] stock, string? quantity, int productIndex)
+        {
+            bool isNumber = int.TryParse(quantity, out int productQuantity);
+            if (!(isNumber && productQuantity > 0)) return "La cantidad ingresada debe ser un número válido mayor a 0";
+            return productQuantity > stock[productIndex] ? "La cantidad solicitada sobrepasa el stock" : string.Empty;
+        }
+        private static void SaleProduct(string[] products, int[] stock, decimal[] prices, int productIndex, int quantity)
+        {
+            Console.WriteLine($"Compra exitosa. Total a pagar: {decimal.Round(prices[productIndex] * quantity, 2):C}");
+            stock[productIndex] = stock[productIndex] - quantity;
+            Console.WriteLine($"Stock restante para el producto {products[productIndex]} es: {stock[productIndex]}");
         }
     }
 }
