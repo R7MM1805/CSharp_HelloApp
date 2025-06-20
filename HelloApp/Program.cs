@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.InventoryManager();
+﻿HelloApp._01_Bases.Program.ListDictionary();
