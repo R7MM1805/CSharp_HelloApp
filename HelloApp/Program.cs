@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.DataStructurs();
+﻿HelloApp._01_Bases.Program.Generics();
