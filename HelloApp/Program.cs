@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.ListDictionary();
+﻿HelloApp._01_Bases.Program.DataStructurs();
