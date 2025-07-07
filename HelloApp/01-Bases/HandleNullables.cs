@@ -6,10 +6,10 @@
         {
             string name = "Ricardo";
             string? lastName = null;
-            Console.WriteLine($"Name: {name} - LastName: {lastName ?? "No proporcionado"}");
+            WriteLine($"Name: {name} - LastName: {lastName ?? "No proporcionado"}");
             string? text = null;
-            Console.WriteLine(text?.Length);
-            Console.WriteLine("Continua el proceso");
+            WriteLine(text?.Length);
+            WriteLine("Continua el proceso");
         }
     }
 }

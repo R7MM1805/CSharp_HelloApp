@@ -9,15 +9,15 @@
          */
         public static void SalaryCalculator()
         {
-            Console.WriteLine("Ingrese su nombre");
-            string? name = Console.ReadLine();
-            Console.WriteLine("Ingrese las horas trabajadas");
-            string? hours = Console.ReadLine();
-            Console.WriteLine("Ingrese su tarifa por hora");
-            string? salaryPerHour = Console.ReadLine();
+            WriteLine("Ingrese su nombre");
+            string? name = ReadLine();
+            WriteLine("Ingrese las horas trabajadas");
+            string? hours = ReadLine();
+            WriteLine("Ingrese su tarifa por hora");
+            string? salaryPerHour = ReadLine();
             string validation = ValidateInputs(name, hours, salaryPerHour);
             string response = string.IsNullOrEmpty(validation) ? CalculateSalary(name!, int.Parse(hours!), decimal.Parse(salaryPerHour!)) : $"Error: {validation}";  
-            Console.WriteLine(response);
+            WriteLine(response);
         }
         private static string ValidateInputs(string? name, string? hours, string? salaryPerHour)
         {

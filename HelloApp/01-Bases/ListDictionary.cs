@@ -7,14 +7,14 @@
             List<string> names = ["Ricardo", "Rosa", "Alvaro"];
             names.Add("Violeta");
             names.Add("Maritza");
-            Console.WriteLine($"Total de nombres: {names.Count}");
+            WriteLine($"Total de nombres: {names.Count}");
             foreach (string name in names)
             {
-                Console.WriteLine($"Nombre: {name}");
+                WriteLine($"Nombre: {name}");
             }
             names.Remove("Maritza");
             bool isPresent = names.Contains("Maritza");
-            Console.WriteLine($"Maritza está en la lista? {isPresent}");
+            WriteLine($"Maritza está en la lista? {isPresent}");
 
             /*Dictionary*/
             Dictionary<int, string> students = new()
@@ -28,7 +28,7 @@
             };
             foreach (KeyValuePair<int, string> student in students)
             {
-                Console.WriteLine($"Estudiante: {student}. Key: {student.Key}. Value: {student.Value}");
+                WriteLine($"Estudiante: {student}. Key: {student.Key}. Value: {student.Value}");
             }
         }
     }

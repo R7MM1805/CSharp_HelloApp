@@ -8,7 +8,7 @@
             DateTime currentDate = DateTime.Now.Date;
             TimeSpan timeSpan = currentDate - birthDate.Date;
 
-            Console.WriteLine($"""
+            WriteLine($"""
                 Has vivido {timeSpan.Days} días
                 """);
         }

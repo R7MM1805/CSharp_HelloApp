@@ -6,8 +6,8 @@
         {
             string[] names = ["Ricardo", "Rosa", "Alvaro"];
             int[] numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            Console.WriteLine(GetArrayLength(names));
-            Console.WriteLine(GetArrayLength(numbers));
+            WriteLine(GetArrayLength(names));
+            WriteLine(GetArrayLength(numbers));
 
             Box<int> numberBox = new() { Content = 50 };
             Box<string> stringBox = new() { Content = "Texto" };
@@ -28,7 +28,7 @@
         public T? Content { get; set; }
         public void Show()
         {
-            Console.WriteLine($"Contenido: {Content}");
+            WriteLine($"Contenido: {Content}");
         }
     }
 }

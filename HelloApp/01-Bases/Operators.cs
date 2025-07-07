@@ -13,9 +13,9 @@
                 (false, true) => $"El número '{number}' es impar y mayor que 10",
                 _ => $"El número '{number}' no cumple con las condiciones"
             };
-            Console.WriteLine(message);
+            WriteLine(message);
             string ageMessage = (number > 18) ? "Es mayor de edad" : "Es menor de edad";
-            Console.WriteLine(ageMessage);
+            WriteLine(ageMessage);
         }
     }
 }

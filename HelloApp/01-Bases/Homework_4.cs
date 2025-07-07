@@ -16,13 +16,13 @@ namespace HelloApp._01_Bases
 
         public static void DaysUntilNextBirthday()
         {
-            Console.WriteLine("Ingrese su nombre:");
-            string? name = Console.ReadLine();
-            Console.WriteLine("Ingrese su fecha de nacimiento (dd/MM/yyyy):");
-            string? birthDate = Console.ReadLine();
+            WriteLine("Ingrese su nombre:");
+            string? name = ReadLine();
+            WriteLine("Ingrese su fecha de nacimiento (dd/MM/yyyy):");
+            string? birthDate = ReadLine();
             string validation = ValidateInputs(name, birthDate);
             string response = string.IsNullOrEmpty(validation) ? CalculateDaysUntilNextBirthDate(name!, birthDate!) : $"Error: {validation}";
-            Console.WriteLine(response);
+            WriteLine(response);
         }
 
         private static string ValidateInputs(string? name, string? birthDate)

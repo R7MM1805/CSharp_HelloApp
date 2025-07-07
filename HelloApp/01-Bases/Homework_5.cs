@@ -29,15 +29,15 @@
             }
             else if (responseValidate == "2")
             {
-                Console.WriteLine("Gracias por su visita");
+                WriteLine("Gracias por su visita");
             }
         }
         private static string? ShowOptions()
         {
-            Console.WriteLine("1. Comprar productos");
-            Console.WriteLine("2. Salir");
-            Console.WriteLine("\nIngrese una opción:");
-            return Console.ReadLine();
+            WriteLine("1. Comprar productos");
+            WriteLine("2. Salir");
+            WriteLine("\nIngrese una opción:");
+            return ReadLine();
         }
         private static string ValidateOption(string? selectedOption)
         {
@@ -47,10 +47,10 @@
         private static void ShowOptionOne(string[] products, int[] stock, decimal[] prices)
         {
             ShowProducts(products, stock, prices);
-            Console.WriteLine("\nIngrese el producto que desee comprar");
-            string? searchedProduct = Console.ReadLine();
-            Console.WriteLine("\nIngrese la cantidad que desee comprar");
-            string? quantity = Console.ReadLine();
+            WriteLine("\nIngrese el producto que desee comprar");
+            string? searchedProduct = ReadLine();
+            WriteLine("\nIngrese la cantidad que desee comprar");
+            string? quantity = ReadLine();
             (string responseValidate, int productIndex) = ValidateSale(products, stock, searchedProduct, quantity);
             if (string.IsNullOrEmpty(responseValidate))
             {
@@ -58,17 +58,17 @@
             }
             else
             {
-                Console.WriteLine(responseValidate);
+                WriteLine(responseValidate);
                 ShowOptionOne(products, stock, prices);
             }
         }
         private static void ShowProducts(string[] products, int[] stock, decimal[] prices)
         {
-            Console.WriteLine("Inventario de productos");
-            Console.WriteLine("------------------------");
+            WriteLine("Inventario de productos");
+            WriteLine("------------------------");
             for (int i = 0; i < products.Length; i++)
             {
-                Console.WriteLine($"Producto: {products[i]} - Stock: {stock[i]} - Precio: {prices[i]:C}");
+                WriteLine($"Producto: {products[i]} - Stock: {stock[i]} - Precio: {prices[i]:C}");
             }
         }
         private static (string, int) ValidateSale(string[] products, int[] stock, string? searchedProduct, string? quantity)
@@ -94,9 +94,9 @@
         }
         private static void SaleProduct(string[] products, int[] stock, decimal[] prices, int productIndex, int quantity)
         {
-            Console.WriteLine($"Compra exitosa. Total a pagar: {decimal.Round(prices[productIndex] * quantity, 2):C}");
+            WriteLine($"Compra exitosa. Total a pagar: {decimal.Round(prices[productIndex] * quantity, 2):C}");
             stock[productIndex] = stock[productIndex] - quantity;
-            Console.WriteLine($"Stock restante para el producto {products[productIndex]} es: {stock[productIndex]}");
+            WriteLine($"Stock restante para el producto {products[productIndex]} es: {stock[productIndex]}");
             InitialInventory(products, stock, prices);
         }
     }

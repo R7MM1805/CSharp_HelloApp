@@ -7,7 +7,7 @@
             int age = 30;
             string name = "Ricardo";
             bool isStudent = true;
-            Console.WriteLine($"Nombre: {name} tiene una edad de {age} es estudiante {isStudent}");
+            WriteLine($"Nombre: {name} tiene una edad de {age} es estudiante {isStudent}");
         }
     }
 }

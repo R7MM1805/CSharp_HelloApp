@@ -8,7 +8,7 @@
             int quantitySold = 3;
             decimal unitPrice = 589.51m;
             decimal totalAmount = quantitySold * unitPrice;
-            Console.WriteLine($"""
+            WriteLine($"""
                 Producto: {product}
                 Cantidad vendida: {quantitySold}
                 Total venta: {totalAmount:C}

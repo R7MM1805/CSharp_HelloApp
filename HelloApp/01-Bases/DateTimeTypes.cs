@@ -10,7 +10,7 @@
             DateTime customDate = new(1994, 11, 2);
             DayOfWeek dayOfWeek = now.DayOfWeek;
 
-            Console.WriteLine($"""
+            WriteLine($"""
                 Fecha Actual: {now},
                 Hoy: {today},
                 Hace una semana: {nowWeekAgo:dd/MM/yyyy},

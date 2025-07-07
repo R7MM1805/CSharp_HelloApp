@@ -7,15 +7,15 @@
             string name = "Ricardo";
             string message = "Hola " + name;
             string interpolatedMessage = $"Hola {name}";
-            Console.WriteLine(message);
-            Console.WriteLine(interpolatedMessage);
-            Console.WriteLine($"Tu nombre tiene {name.Length} caracteres");
-            Console.WriteLine($"Tu nombre en mayusculas es {name.ToUpper()}");
-            Console.WriteLine($"Tu nombre en minuscula es {name.ToLower()}");
+            WriteLine(message);
+            WriteLine(interpolatedMessage);
+            WriteLine($"Tu nombre tiene {name.Length} caracteres");
+            WriteLine($"Tu nombre en mayusculas es {name.ToUpper()}");
+            WriteLine($"Tu nombre en minuscula es {name.ToLower()}");
             int number = 30;
-            Console.WriteLine(number.ToString());
+            WriteLine(number.ToString());
             bool isStudent = true;
-            Console.WriteLine(isStudent.ToString());
+            WriteLine(isStudent.ToString());
         }
     }
 }

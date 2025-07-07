@@ -7,7 +7,7 @@
             int x = 5;
             int y = x;
             y = 15;
-            Console.WriteLine($"""
+            WriteLine($"""
                 x: {x},
                 y: {y}
                 """);
@@ -15,7 +15,7 @@
             Person person1 = new() { Name = "Ricardo" };
             Person person2 = person1;
             person2.Name = "Rosa";
-            Console.WriteLine($"""
+            WriteLine($"""
                 person1: {person1.Name},
                 person2: {person2.Name}
                 """);

@@ -9,11 +9,11 @@
             float floatNumber = 274f;
             long longNumber = 300_200_100L;
             decimal monetaryNumber = 99.99m; //Más preciso
-            Console.WriteLine($"Integer:{integer}");
-            Console.WriteLine($"Double:{doubleNumber}");
-            Console.WriteLine($"Float:{floatNumber}");
-            Console.WriteLine($"Long:{longNumber}");
-            Console.WriteLine($"Decimal:{monetaryNumber}");
+            WriteLine($"Integer:{integer}");
+            WriteLine($"Double:{doubleNumber}");
+            WriteLine($"Float:{floatNumber}");
+            WriteLine($"Long:{longNumber}");
+            WriteLine($"Decimal:{monetaryNumber}");
         }
     }
 }
