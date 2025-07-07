@@ -1,1 +1,1 @@
-﻿HelloApp._01_Bases.Program.Generics();
+﻿Conditional();

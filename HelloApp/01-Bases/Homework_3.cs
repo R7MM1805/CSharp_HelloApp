@@ -1,16 +1,13 @@
-﻿namespace HelloApp._01_Bases
+﻿partial class Program
 {
-    partial class Program
+    public static void DayOfLife()
     {
-        public static void DayOfLife()
-        {
-            DateTime birthDate = new(2023, 9, 10);
-            DateTime currentDate = DateTime.Now.Date;
-            TimeSpan timeSpan = currentDate - birthDate.Date;
+        DateTime birthDate = new(2023, 9, 10);
+        DateTime currentDate = DateTime.Now.Date;
+        TimeSpan timeSpan = currentDate - birthDate.Date;
 
-            WriteLine($"""
+        WriteLine($"""
                 Has vivido {timeSpan.Days} días
                 """);
-        }
     }
 }

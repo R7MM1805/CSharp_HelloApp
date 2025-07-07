@@ -1,23 +1,21 @@
-﻿namespace HelloApp._01_Bases
+﻿partial class Program
 {
-    partial class Program
+    public static void ListDictionary()
     {
-        public static void ListDictionary()
+        List<string> names = ["Ricardo", "Rosa", "Alvaro"];
+        names.Add("Violeta");
+        names.Add("Maritza");
+        WriteLine($"Total de nombres: {names.Count}");
+        foreach (string name in names)
         {
-            List<string> names = ["Ricardo", "Rosa", "Alvaro"];
-            names.Add("Violeta");
-            names.Add("Maritza");
-            WriteLine($"Total de nombres: {names.Count}");
-            foreach (string name in names)
-            {
-                WriteLine($"Nombre: {name}");
-            }
-            names.Remove("Maritza");
-            bool isPresent = names.Contains("Maritza");
-            WriteLine($"Maritza está en la lista? {isPresent}");
+            WriteLine($"Nombre: {name}");
+        }
+        names.Remove("Maritza");
+        bool isPresent = names.Contains("Maritza");
+        WriteLine($"Maritza está en la lista? {isPresent}");
 
-            /*Dictionary*/
-            Dictionary<int, string> students = new()
+        /*Dictionary*/
+        Dictionary<int, string> students = new()
             {
                 { 1, "Ricardo" },
                 { 2, "Martin" },
@@ -26,10 +24,9 @@
                 { 5, "Rosa" },
                 { 6, "Maria" }
             };
-            foreach (KeyValuePair<int, string> student in students)
-            {
-                WriteLine($"Estudiante: {student}. Key: {student.Key}. Value: {student.Value}");
-            }
+        foreach (KeyValuePair<int, string> student in students)
+        {
+            WriteLine($"Estudiante: {student}. Key: {student.Key}. Value: {student.Value}");
         }
     }
 }
