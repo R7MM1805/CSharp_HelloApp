@@ -1,1 +1,1 @@
-﻿LoopControlExample();
+﻿LoopGame();
