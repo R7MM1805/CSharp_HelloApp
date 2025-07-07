@@ -1,1 +1,1 @@
-﻿FizzBuzz();
+﻿LoopControlExample();
