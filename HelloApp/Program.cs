@@ -1,1 +1,1 @@
-﻿PrintFactorialTable(20);
+﻿Tuples();
