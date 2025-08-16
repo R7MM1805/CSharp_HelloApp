@@ -1,1 +1,1 @@
-﻿BusFleet();
+﻿Inheritance();
