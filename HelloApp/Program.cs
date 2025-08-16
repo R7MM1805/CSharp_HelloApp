@@ -1,1 +1,1 @@
-﻿EmployeeSalary();
+﻿HandleException();
