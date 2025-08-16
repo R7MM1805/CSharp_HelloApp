@@ -36,6 +36,12 @@
         WriteLine("Personajes del team avengers");
         List<string> avengersQuery = [.. characters.Where(x => x.Team == "Avengers").Select(x => $"{x.Name} - {x.Alias}")];
         avengersQuery.ForEach(x => WriteLine(x.ToUpper()));
+        WriteLine("Personajes ordenados");
+        List<string> sortedCharacters = [.. characters.OrderBy(x => x.Name).Select(x => x.Name)];
+        sortedCharacters.ForEach(x => WriteLine(x.ToUpper()));
+        WriteLine("Personajes 3 elementos");
+        List<string> firstThreeElements = [.. characters.Take(3).Select(x => x.Name)];
+        firstThreeElements.ForEach(x => WriteLine(x.ToUpper()));
     }
     class MarvelCharacter(string name, string alias, string team)
     {
