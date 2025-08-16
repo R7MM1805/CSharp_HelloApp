@@ -1,1 +1,1 @@
-﻿Collections();
+﻿Linq();
