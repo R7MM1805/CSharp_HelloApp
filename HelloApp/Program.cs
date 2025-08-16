@@ -1,1 +1,1 @@
-﻿AbstractClassExamples();
+﻿Visibility();
