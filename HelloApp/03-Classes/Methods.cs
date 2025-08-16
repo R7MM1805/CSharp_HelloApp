@@ -2,11 +2,10 @@
 {
     public static void Methods()
     {
-        Car car = new()
-        {
-            Model = "Yaris",
-            Year = 2022
-        };
+        Car car = new();
+        WriteLine(car.ShowInformation());
+        car.Model = "Yaris";
+        car.Year = 2022;
         WriteLine(car.ShowInformation());
         Car.ShowMessage();
         Car.ShowMessage("Cambiando de modelo");
@@ -35,6 +34,10 @@ class Car
     }
 
     public Car() { }
+
+    ~Car() { 
+        WriteLine("Destructor llamado. Recurso liberado"); 
+    }
 
     public void ChangeModel(string newModel)
     {
