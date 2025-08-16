@@ -13,12 +13,28 @@
         car.ChangeModel("Patrol");
         WriteLine(car.ShowInformation());
         Car.GeneralInformation();
+        Car duster = new("Duster", 2018);
+        WriteLine(duster.ShowInformation());
+        List<Car> cars =
+        [
+            new Car("Ferrari", 2017),
+            new Car("Hyundai", 2020),
+            new Car("Toyota", 2024),
+        ];
+        cars.ForEach(x => WriteLine(x.ShowInformation()));
     }
 }
 class Car
 {
     public string? Model { get; set; }
     public int Year { get; set; }
+
+    public Car(string model, int year)
+    {
+        Model = model; Year = year;
+    }
+
+    public Car() { }
 
     public void ChangeModel(string newModel)
     {
