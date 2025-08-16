@@ -1,1 +1,1 @@
-﻿AdvanceLinq();
+﻿SalesAnalysis();
