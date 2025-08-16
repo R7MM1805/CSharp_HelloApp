@@ -1,1 +1,1 @@
-﻿Properties();
+﻿Methods();
