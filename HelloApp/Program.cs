@@ -1,1 +1,1 @@
-﻿Linq();
+﻿AdvanceLinq();
