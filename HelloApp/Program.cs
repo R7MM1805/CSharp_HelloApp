@@ -1,1 +1,1 @@
-﻿TestingClasses();
+﻿Properties();
