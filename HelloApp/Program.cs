@@ -1,1 +1,1 @@
-﻿PathExample();
+﻿WriteFileExample();
