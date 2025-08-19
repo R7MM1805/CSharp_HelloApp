@@ -3,3 +3,6 @@ La hora actual es: 06:46:04
 Podemos escribir en un archivo
 Nuevo contenido
 La hora actual es: 06:48:00
+Podemos escribir en un archivo
+Nuevo contenido
+La hora actual es: 06:54:04
