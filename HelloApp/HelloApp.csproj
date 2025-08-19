@@ -7,12 +7,14 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
-	<ItemGroup Label="Simplificar el uso de la consola">
-		<Using Include="System.Console" Static="true" />
+	<ItemGroup>
+	  <Compile Remove="05-Files\DirEjemplo\**" />
+	  <EmbeddedResource Remove="05-Files\DirEjemplo\**" />
+	  <None Remove="05-Files\DirEjemplo\**" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="05-Files\DirEjemplo\OtherDirectory\" />
+	<ItemGroup Label="Simplificar el uso de la consola">
+		<Using Include="System.Console" Static="true" />
 	</ItemGroup>
 
 </Project>

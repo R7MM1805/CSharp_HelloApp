@@ -1,1 +1,1 @@
-﻿DirectoryExample();
+﻿PathExample();
