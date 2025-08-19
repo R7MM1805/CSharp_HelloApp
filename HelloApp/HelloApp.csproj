@@ -11,4 +11,8 @@
 		<Using Include="System.Console" Static="true" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="05-Files\DirEjemplo\OtherDirectory\" />
+	</ItemGroup>
+
 </Project>
