@@ -1,0 +1,2 @@
+Esto está dentro del archivo
+Esta es otra línea del archivo
