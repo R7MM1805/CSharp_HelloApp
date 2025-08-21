@@ -18,9 +18,9 @@
   {
     "Id": "3f6c921",
     "Description": "Estudiar C#",
-    "Completed": false,
+    "Completed": true,
     "CreatedAt": "2025-03-11T14:20:53.051415-05:00",
-    "ModifiedAt": "2025-03-12T12:16:17.74727-05:00",
+    "ModifiedAt": "2025-08-21T18:30:32.0950758-05:00",
     "Deleted": false
   },
   {

@@ -29,6 +29,9 @@ partial class Program
                 case "2":
                     AddTask();
                     break;
+                case "3":
+                    MarkAsCompleted();
+                    break;
                 case "8":
                     exit = true; 
                     Clear();
@@ -38,7 +41,6 @@ partial class Program
                     WriteLine("Opción no válida. Intentar nuevamente");
                     break;
             }
-                //"3" => MarkAsCompleted(),
                 //"4" => EditTask(),
                 //"5" => RemoveTask(),
                 //"6" => TasksByState(),
@@ -56,6 +58,19 @@ partial class Program
         {
             ForegroundColor = ConsoleColor.Red;
             WriteLine($"Ocurrió un error al agregar la tarea: {ex.Message}");
+        }
+    }
+    public static void MarkAsCompleted()
+    {
+        try
+        {
+            List<TaskMaster.Task> tasks = queries.MarkAsCompleted();
+            fileActions.WriteFile(tasks);
+        }
+        catch (Exception ex)
+        {
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine($"Ocurrió un error al completar la tarea: {ex.Message}");
         }
     }
 }

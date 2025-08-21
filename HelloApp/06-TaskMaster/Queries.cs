@@ -4,7 +4,7 @@ namespace TaskMaster
 {
     public class Queries(List<Task> _tasks)
     {
-        private List<Task> Tasks = _tasks;
+        private readonly List<Task> Tasks = _tasks;
 
         public void ListTasks()
         {
@@ -20,7 +20,6 @@ namespace TaskMaster
             }
             WriteLine(table.ToString());
         }
-
         public List<Task> AddTask()
         {
             try
@@ -43,6 +42,35 @@ namespace TaskMaster
             }
             return Tasks;
         }
-
+        public List<Task> MarkAsCompleted()
+        {
+            try
+            {
+                ResetColor();
+                Clear();
+                WriteLine("-----Completar Tarea-----");
+                WriteLine("Ingrese el id de la tarea");
+                string? id = ReadLine();
+                Task? task = Tasks.FirstOrDefault(x => x.Id == id);
+                if (task is null)
+                {
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine($"No se encontró la tarea con el ID proporcionado: {id}");
+                    ResetColor();
+                    return Tasks;
+                }
+                task.Completed = true;
+                task.ModifiedAt = DateTime.Now;
+                ForegroundColor = ConsoleColor.Green;
+                WriteLine("Tarea completada con exito");
+                ResetColor();
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Error: {ex.Message}");
+            }
+            return Tasks;
+        }
     }
 }
