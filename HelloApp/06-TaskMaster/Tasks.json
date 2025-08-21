@@ -9,18 +9,18 @@
   },
   {
     "Id": "f73d8fd",
-    "Description": "Comer saludable",
+    "Description": "Comer sano",
     "Completed": false,
     "CreatedAt": "2024-01-15T00:00:00",
-    "ModifiedAt": "2024-01-15T00:00:00",
+    "ModifiedAt": "2025-08-21T18:35:31.5585455-05:00",
     "Deleted": true
   },
   {
     "Id": "3f6c921",
-    "Description": "Estudiar C#",
+    "Description": "Estudiar programación",
     "Completed": true,
     "CreatedAt": "2025-03-11T14:20:53.051415-05:00",
-    "ModifiedAt": "2025-08-21T18:30:32.0950758-05:00",
+    "ModifiedAt": "2025-08-21T18:35:10.0887726-05:00",
     "Deleted": false
   },
   {

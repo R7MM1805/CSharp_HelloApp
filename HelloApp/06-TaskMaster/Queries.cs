@@ -72,5 +72,37 @@ namespace TaskMaster
             }
             return Tasks;
         }
+        public List<Task> EditTask()
+        {
+            try
+            {
+                ResetColor();
+                Clear();
+                WriteLine("-----Editar Tarea-----");
+                WriteLine("Ingrese el id de la tarea");
+                string? id = ReadLine();
+                Task? task = Tasks.FirstOrDefault(x => x.Id == id);
+                if (task is null)
+                {
+                    ForegroundColor = ConsoleColor.Red;
+                    WriteLine($"No se encontró la tarea con el ID proporcionado: {id}");
+                    ResetColor();
+                    return Tasks;
+                }
+                WriteLine("Ingrese la descripción de la tarea");
+                string? description = ReadLine();
+                task.Description = description ?? string.Empty;
+                task.ModifiedAt = DateTime.Now;
+                ForegroundColor = ConsoleColor.Green;
+                WriteLine("Tarea editada con exito");
+                ResetColor();
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Error: {ex.Message}");
+            }
+            return Tasks;
+        }
     }
 }
