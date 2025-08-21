@@ -13,6 +13,10 @@
 	  <None Remove="05-Files\DirEjemplo\**" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="BetterConsoleTables" Version="1.1.3" />
+	</ItemGroup>
+
 	<ItemGroup Label="Simplificar el uso de la consola">
 		<Using Include="System.Console" Static="true" />
 	</ItemGroup>

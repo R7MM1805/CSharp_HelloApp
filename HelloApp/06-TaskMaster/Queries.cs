@@ -1,4 +1,6 @@
-﻿namespace TaskMaster
+﻿using BetterConsoleTables;
+
+namespace TaskMaster
 {
     public class Queries(List<Task> _tasks)
     {
@@ -8,12 +10,15 @@
         {
             ForegroundColor = ConsoleColor.DarkBlue;
             WriteLine("-----LISTA DE TAREAS-----");
+            Table table = new("ID", "Descripcion", "Estado")
+            {
+                Config = TableConfiguration.Unicode()
+            };
             foreach (Task task in Tasks)
             {
-                WriteLine("\n{0,-8}{1,-35}{2,-15}", "Id", "Descripcion", "Completado");
-                WriteLine(new string('-', 58));
-                WriteLine("\n{0,-8}{1,-35}{2,-15}", task.Id, task.Description, task.Completed);
+                table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "");
             }
+            WriteLine(table.ToString());
         }
 
     }
