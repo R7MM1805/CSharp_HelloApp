@@ -35,6 +35,9 @@ partial class Program
                 case "4":
                     EditTask();
                     break;
+                case "5":
+                    RemoveTask();
+                    break;
                 case "8":
                     exit = true; 
                     Clear();
@@ -44,7 +47,6 @@ partial class Program
                     WriteLine("Opción no válida. Intentar nuevamente");
                     break;
             }
-                //"5" => RemoveTask(),
                 //"6" => TasksByState(),
                 //"7" => TasksByDescription(),
         }
@@ -86,6 +88,19 @@ partial class Program
         {
             ForegroundColor = ConsoleColor.Red;
             WriteLine($"Ocurrió un error al editar la tarea: {ex.Message}");
+        }
+    }
+    public static void RemoveTask()
+    {
+        try
+        {
+            List<TaskMaster.Task> tasks = queries.RemoveTask();
+            fileActions.WriteFile(tasks);
+        }
+        catch (Exception ex)
+        {
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine($"Ocurrió un error al eliminar la tarea: {ex.Message}");
         }
     }
 }
