@@ -1,4 +1,5 @@
-﻿using TaskMaster;
+﻿using HelloApp.Util;
+using TaskMaster;
 
 partial class Program
 {
@@ -64,8 +65,7 @@ partial class Program
         }
         catch (Exception ex)
         {
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine($"Ocurrió un error al agregar la tarea: {ex.Message}");
+            Util.SetMessage(ConsoleColor.Red, $"Ocurrió un error al agregar la tarea: {ex.Message}");
         }
     }
     public static void MarkAsCompleted()
@@ -77,8 +77,7 @@ partial class Program
         }
         catch (Exception ex)
         {
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine($"Ocurrió un error al completar la tarea: {ex.Message}");
+            Util.SetMessage(ConsoleColor.Red, $"Ocurrió un error al completar la tarea: {ex.Message}");
         }
     }
     public static void EditTask()
@@ -90,8 +89,7 @@ partial class Program
         }
         catch (Exception ex)
         {
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine($"Ocurrió un error al editar la tarea: {ex.Message}");
+            Util.SetMessage(ConsoleColor.Red, $"Ocurrió un error al editar la tarea: {ex.Message}");
         }
     }
     public static void RemoveTask()
@@ -103,8 +101,7 @@ partial class Program
         }
         catch (Exception ex)
         {
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine($"Ocurrió un error al eliminar la tarea: {ex.Message}");
+            Util.SetMessage(ConsoleColor.Red, $"Ocurrió un error al eliminar la tarea: {ex.Message}");
         }
     }
 }

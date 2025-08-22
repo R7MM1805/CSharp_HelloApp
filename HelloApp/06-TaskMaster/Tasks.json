@@ -25,18 +25,18 @@
   },
   {
     "Id": "52a3a22",
-    "Description": "comer carne",
-    "Completed": false,
+    "Description": "Comer Carne",
+    "Completed": true,
     "CreatedAt": "2025-08-21T19:17:01.3053554-05:00",
-    "ModifiedAt": "2025-08-21T19:17:01.3053598-05:00",
+    "ModifiedAt": "2025-08-21T21:16:31.3633173-05:00",
     "Deleted": false
   },
   {
-    "Id": "21fff2a",
-    "Description": "estudiar logica",
+    "Id": "a4f1e2f",
+    "Description": "Llegar temprano al trabajo",
     "Completed": false,
-    "CreatedAt": "2025-08-21T19:17:11.3435681-05:00",
-    "ModifiedAt": "2025-08-21T19:17:11.3435729-05:00",
+    "CreatedAt": "2025-08-21T21:15:57.6695495-05:00",
+    "ModifiedAt": "2025-08-21T21:15:57.6695536-05:00",
     "Deleted": false
   }
 ]

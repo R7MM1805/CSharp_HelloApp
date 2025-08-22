@@ -1,5 +1,5 @@
 ﻿using BetterConsoleTables;
-using System.Threading.Tasks;
+using HelloApp.Util;
 
 namespace TaskMaster
 {
@@ -7,217 +7,214 @@ namespace TaskMaster
     {
         private readonly List<Task> Tasks = _tasks;
 
+        #region Public Methods
         public void ListTasks()
         {
             ForegroundColor = ConsoleColor.DarkBlue;
             WriteLine("-----LISTA DE TAREAS-----");
-            Table table = new("ID", "Descripcion", "Estado")
-            {
-                Config = TableConfiguration.Unicode()
-            };
-            foreach (Task task in Tasks)
-            {
-                table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "");
-            }
-            WriteLine(table.ToString());
+            WriteLine(ConfigureTaskTable(Tasks));
         }
         public List<Task> AddTask()
         {
             try
             {
-                ResetColor();
-                Clear();
-                WriteLine("-----Añadir Tarea-----");
-                WriteLine("Ingrese la descripción de la tarea");
+                InitConsole("-----Añadir Tarea-----", "Ingrese la descripción de la tarea");
                 string? descrption = ReadLine();
-                Task task = new(Util.GenerateID(), descrption ?? string.Empty);
-                Tasks.Add(task);
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("Tarea añadida con exito");
-                ResetColor();
+                string validate = Validation.ValidateString(descrption, "Se requiere la descripción de la tarea");
+                return string.IsNullOrEmpty(validate) ? RegisterTaks(descrption!) : SetError(ConsoleColor.Red, validate);
             }
             catch (Exception ex)
             {
-                ForegroundColor = ConsoleColor.Red;
-                WriteLine($"Error: {ex.Message}");
+                Util.SetMessage(ConsoleColor.Red, $"Error: {ex.Message}");
+                return Tasks;
             }
-            return Tasks;
         }
         public List<Task> MarkAsCompleted()
         {
             try
             {
-                ResetColor();
-                Clear();
-                WriteLine("-----Completar Tarea-----");
-                WriteLine("Ingrese el id de la tarea");
+                InitConsole("-----Completar Tarea-----", "Ingrese el id de la tarea");
                 string? id = ReadLine();
-                Task? task = Tasks.FirstOrDefault(x => x.Id == id);
-                if (task is null)
-                {
-                    ForegroundColor = ConsoleColor.Red;
-                    WriteLine($"No se encontró la tarea con el ID proporcionado: {id}");
-                    ResetColor();
-                    return Tasks;
-                }
-                task.Completed = true;
-                task.ModifiedAt = DateTime.Now;
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("Tarea completada con exito");
-                ResetColor();
+                string validate = ValidateTasksID(id);
+                return string.IsNullOrEmpty(validate) ? CompletedTasks(id!) : SetError(ConsoleColor.Red, validate);
             }
             catch (Exception ex)
             {
-                ForegroundColor = ConsoleColor.Red;
-                WriteLine($"Error: {ex.Message}");
+                Util.SetMessage(ConsoleColor.Red, $"Error: {ex.Message}");
+                return Tasks;
             }
-            return Tasks;
         }
         public List<Task> EditTask()
         {
             try
             {
-                ResetColor();
-                Clear();
-                WriteLine("-----Editar Tarea-----");
-                WriteLine("Ingrese el id de la tarea");
+                InitConsole("-----Editar Tarea-----", "Ingrese el id de la tarea");
                 string? id = ReadLine();
-                Task? task = Tasks.FirstOrDefault(x => x.Id == id);
-                if (task is null)
-                {
-                    ForegroundColor = ConsoleColor.Red;
-                    WriteLine($"No se encontró la tarea con el ID proporcionado: {id}");
-                    ResetColor();
-                    return Tasks;
-                }
-                WriteLine("Ingrese la descripción de la tarea");
-                string? description = ReadLine();
-                task.Description = description ?? string.Empty;
-                task.ModifiedAt = DateTime.Now;
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("Tarea editada con exito");
-                ResetColor();
+                string validate = ValidateTasksID(id);
+                return string.IsNullOrEmpty(validate) ? UpdateTasks(id!) : SetError(ConsoleColor.Red, validate);
             }
             catch (Exception ex)
             {
-                ForegroundColor = ConsoleColor.Red;
-                WriteLine($"Error: {ex.Message}");
+                Util.SetMessage(ConsoleColor.Red, $"Error: {ex.Message}");
+                return Tasks;
             }
-            return Tasks;
         }
         public List<Task> RemoveTask()
         {
             try
             {
-                ResetColor();
-                Clear();
-                WriteLine("-----Eliminar Tarea-----");
-                WriteLine("Ingrese el id de la tarea");
+                InitConsole("-----Eliminar Tarea-----", "Ingrese el id de la tarea");
                 string? id = ReadLine();
-                Task? task = Tasks.FirstOrDefault(x => x.Id == id);
-                if (task is null)
-                {
-                    ForegroundColor = ConsoleColor.Red;
-                    WriteLine($"No se encontró la tarea con el ID proporcionado: {id}");
-                    ResetColor();
-                    return Tasks;
-                }
-                Tasks.Remove(task);
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("Tarea eliminada con exito");
-                ResetColor();
+                string validate = ValidateTasksID(id);
+                return string.IsNullOrEmpty(validate) ? RemoveTaskByID(id!) : SetError(ConsoleColor.Red, validate);
             }
             catch (Exception ex)
             {
-                ForegroundColor = ConsoleColor.Red;
-                WriteLine($"Error: {ex.Message}");
+                Util.SetMessage(ConsoleColor.Red, $"Error: {ex.Message}");
+                return Tasks;
             }
-            return Tasks;
         }
         public void TasksByState()
         {
-            Clear();
             try
             {
-                ResetColor();
-                Clear();
-                WriteLine("-----Filtrar Tarea-----");
-                WriteLine("1. Completada");
-                WriteLine("2. Pendiente");
-                string? status = ReadLine();
-                switch (status)
-                {
-                    case "1":
-                        ShowTasksByStatus(true);
-                        break;
-                    case "2":
-                        ShowTasksByStatus(false);
-                        break;
-                    default:
-                        Clear();
-                        WriteLine("Opción no válida. Intentar nuevamente");
-                        break;
-                }
+                InitConsole("-----Filtrar Tarea-----", "Seleccione el estado. \n1. Completada \n2. Pendiente");
+                FindTasksByStatus(ReadLine());
             }
             catch (Exception ex)
             {
-                ForegroundColor = ConsoleColor.Red;
-                WriteLine($"Ocurrió un error al filtrar las tareas: {ex.Message}");
+                Util.SetMessage(ConsoleColor.Red, $"Ocurrió un error al filtrar las tareas: {ex.Message}");
+            }
+        }
+        public void TasksByDescription()
+        {
+            try
+            {
+                InitConsole("-----Filtrar Tarea por descripción-----", "");
+                string description = ReadLine() ?? string.Empty;
+                List<Task> tasks = Tasks.Where(x => x.Description.Contains(description, StringComparison.OrdinalIgnoreCase)).ToList() ?? [];
+                if (tasks.Count == 0) Util.SetMessage(ConsoleColor.Red, "No se encontraron tareas con el filtro solicitado");
+                else WriteLine(ConfigureTaskTable(tasks));
+            }
+            catch (Exception ex)
+            {
+                Util.SetMessage(ConsoleColor.Red, $"Ocurrió un error al filtrar las tareas: {ex.Message}");
+            }
+        }
+        #endregion
+
+        #region Private Methods
+
+        #region ListTasks
+        private static string ConfigureTaskTable(List<Task> tasks)
+        {
+            Table table = new("ID", "Descripcion", "Estado")
+            {
+                Config = TableConfiguration.Unicode()
+            };
+            tasks.ForEach(x => table.AddRow(x.Id, x.Description, x.Completed ? "Completada" : ""));
+            return table.ToString();
+        }
+        #endregion
+
+        #region AddTask
+        private static void InitConsole(string title, string subtitle)
+        {
+            ResetColor();
+            Clear();
+            WriteLine(title);
+            WriteLine(subtitle);
+        }
+        
+        private List<Task> RegisterTaks(string description)
+        {
+            Task task = new(Util.GenerateID(), description);
+            Tasks.Add(task);
+            Util.SetMessage(ConsoleColor.Green, "Tarea añadida con éxito");
+            return Tasks;
+        }
+        private List<Task> SetError(ConsoleColor color, string message)
+        {
+            Util.SetMessage(color, message);
+            return Tasks;
+        }
+        #endregion
+
+        #region MarkAsCompleted
+        private string ValidateTasksID(string? id)
+        {
+            string response = Validation.ValidateString(id, "Se requiere el id de la tarea");
+            if (!string.IsNullOrEmpty(response)) return response;
+            Task? task = GetTaskByID(id!);
+            return task is null ? $"No se encontró la tarea con el ID proporcionado: {id}" : string.Empty;
+        }
+        private Task? GetTaskByID(string id) => Tasks.FirstOrDefault(x => x.Id == id);
+        private List<Task> CompletedTasks(string id)
+        {
+            Task? task = GetTaskByID(id);
+            if (task is null) return [];
+            task.Completed = true;
+            task.ModifiedAt = DateTime.Now;
+            Util.SetMessage(ConsoleColor.Green, "Tarea completada con exito");
+            return Tasks;
+        }
+        #endregion
+
+        #region EditTask
+        private List<Task> UpdateTasks(string id)
+        {
+            Task? task = GetTaskByID(id);
+            if (task is null) return [];
+            WriteLine("Ingrese la descripción de la tarea");
+            string? description = ReadLine();
+            string validate = Validation.ValidateString(description, "Se requiere la descripción de la tarea");
+            return string.IsNullOrEmpty(validate) ? ModifyTasks(task, description!) : SetError(ConsoleColor.Red, validate);
+        }
+        private List<Task> ModifyTasks(Task task, string description)
+        {
+            task.Description = description;
+            task.ModifiedAt = DateTime.Now;
+            Util.SetMessage(ConsoleColor.Green, "Tarea modificada con éxito");
+            return Tasks;
+        }
+        #endregion
+
+        #region RemoveTask
+        private List<Task> RemoveTaskByID(string id)
+        {
+            Task? task = GetTaskByID(id);
+            if (task is null) return [];
+            Tasks.Remove(task);
+            Util.SetMessage(ConsoleColor.Green, "Tarea eliminada con éxito");
+            return Tasks;
+        }
+        #endregion
+
+        #region TasksByState
+        private void FindTasksByStatus(string? status)
+        {
+            switch (status)
+            {
+                case "1":
+                    ShowTasksByStatus(true);
+                    break;
+                case "2":
+                    ShowTasksByStatus(false);
+                    break;
+                default:
+                    WriteLine("Opción no válida. Intentar nuevamente");
+                    TasksByState();
+                    break;
             }
         }
         private void ShowTasksByStatus(bool isCompleted)
         {
             List<Task> tasks = [.. Tasks.Where(x => x.Completed == isCompleted)];
-            if(tasks.Count == 0)
-            {
-                ForegroundColor = ConsoleColor.Red;
-                WriteLine("No se encontraron tareas con el filtro solicitado");
-                ResetColor();
-            }
-            else
-            {
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("Lista de tareas");
-                Table table = new("ID", "Descripcion", "Estado")
-                {
-                    Config = TableConfiguration.Unicode()
-                };
-                foreach (Task task in tasks)
-                {
-                    table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "");
-                }
-                WriteLine(table.ToString());
-                ResetColor();
-            }
+            if (tasks.Count == 0) Util.SetMessage(ConsoleColor.Red, "No se encontraron tareas con el filtro solicitado");
+            else WriteLine(ConfigureTaskTable(tasks));
         }
-        public void TasksByDescription()
-        {
-            Clear();
-            try
-            {
-                ResetColor();
-                Clear();
-                WriteLine("-----Filtrar Tarea por descripción-----");
-                string? description = ReadLine();
-                List<Task> tasks = Tasks.Where(x => x.Description?.Contains(description ?? string.Empty, StringComparison.OrdinalIgnoreCase) ?? false).ToList() ?? [];
-                ForegroundColor = ConsoleColor.Green;
-                WriteLine("Lista de tareas");
-                Table table = new("ID", "Descripcion", "Estado")
-                {
-                    Config = TableConfiguration.Unicode()
-                };
-                foreach (Task task in tasks)
-                {
-                    table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "");
-                }
-                WriteLine(table.ToString());
-                ResetColor();
-            }
-            catch (Exception ex)
-            {
-                ForegroundColor = ConsoleColor.Red;
-                WriteLine($"Ocurrió un error al filtrar las tareas: {ex.Message}");
-            }
-        }
+        #endregion
+
+        #endregion
     }
 }
