@@ -38,6 +38,9 @@ partial class Program
                 case "5":
                     RemoveTask();
                     break;
+                case "6":
+                    queries.TasksByState();
+                    break;
                 case "8":
                     exit = true; 
                     Clear();
@@ -47,7 +50,6 @@ partial class Program
                     WriteLine("Opción no válida. Intentar nuevamente");
                     break;
             }
-                //"6" => TasksByState(),
                 //"7" => TasksByDescription(),
         }
     }

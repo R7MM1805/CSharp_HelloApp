@@ -134,5 +134,61 @@ namespace TaskMaster
             }
             return Tasks;
         }
+        public void TasksByState()
+        {
+            Clear();
+            try
+            {
+                ResetColor();
+                Clear();
+                WriteLine("-----Filtrar Tarea-----");
+                WriteLine("1. Completada");
+                WriteLine("2. Pendiente");
+                string? status = ReadLine();
+                switch (status)
+                {
+                    case "1":
+                        ShowTasksByStatus(true);
+                        break;
+                    case "2":
+                        ShowTasksByStatus(false);
+                        break;
+                    default:
+                        Clear();
+                        WriteLine("Opción no válida. Intentar nuevamente");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine($"Ocurrió un error al filtrar las tareas: {ex.Message}");
+            }
+        }
+        private void ShowTasksByStatus(bool isCompleted)
+        {
+            List<Task> tasks = [.. Tasks.Where(x => x.Completed == isCompleted)];
+            if(tasks.Count == 0)
+            {
+                ForegroundColor = ConsoleColor.Red;
+                WriteLine("No se encontraron tareas con el filtro solicitado");
+                ResetColor();
+            }
+            else
+            {
+                ForegroundColor = ConsoleColor.Green;
+                WriteLine("Lista de tareas");
+                Table table = new("ID", "Descripcion", "Estado")
+                {
+                    Config = TableConfiguration.Unicode()
+                };
+                foreach (Task task in tasks)
+                {
+                    table.AddRow(task.Id, task.Description, task.Completed ? "Completada" : "");
+                }
+                WriteLine(table.ToString());
+                ResetColor();
+            }
+        }
     }
 }
