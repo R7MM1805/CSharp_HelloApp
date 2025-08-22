@@ -22,5 +22,21 @@
     "CreatedAt": "2025-03-11T14:20:53.051415-05:00",
     "ModifiedAt": "2025-08-21T18:35:10.0887726-05:00",
     "Deleted": false
+  },
+  {
+    "Id": "52a3a22",
+    "Description": "comer carne",
+    "Completed": false,
+    "CreatedAt": "2025-08-21T19:17:01.3053554-05:00",
+    "ModifiedAt": "2025-08-21T19:17:01.3053598-05:00",
+    "Deleted": false
+  },
+  {
+    "Id": "21fff2a",
+    "Description": "estudiar logica",
+    "Completed": false,
+    "CreatedAt": "2025-08-21T19:17:11.3435681-05:00",
+    "ModifiedAt": "2025-08-21T19:17:11.3435729-05:00",
+    "Deleted": false
   }
 ]
