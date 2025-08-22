@@ -108,6 +108,7 @@ namespace TaskMaster
         #region ListTasks
         private static string ConfigureTaskTable(List<Task> tasks)
         {
+            tasks = [.. tasks.Where(x => !x.Deleted)];
             Table table = new("ID", "Descripcion", "Estado")
             {
                 Config = TableConfiguration.Unicode()
@@ -125,7 +126,6 @@ namespace TaskMaster
             WriteLine(title);
             WriteLine(subtitle);
         }
-        
         private List<Task> RegisterTaks(string description)
         {
             Task task = new(Util.GenerateID(), description);
@@ -184,7 +184,8 @@ namespace TaskMaster
         {
             Task? task = GetTaskByID(id);
             if (task is null) return [];
-            Tasks.Remove(task);
+            task.Deleted = true;
+            task.ModifiedAt = DateTime.Now;
             Util.SetMessage(ConsoleColor.Green, "Tarea eliminada con éxito");
             return Tasks;
         }
